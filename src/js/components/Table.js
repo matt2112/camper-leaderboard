@@ -1,4 +1,5 @@
 import React from "react";
+import Axios from "axios";
 
 export default class Table extends React.Component {
 
@@ -6,7 +7,11 @@ export default class Table extends React.Component {
         super();
         this.state = {
             focus: "thirty-days",
-            data: {}
+            data: {
+                0: {
+                    username: "steve"
+                }
+            }
         };
     }
 
@@ -20,23 +25,24 @@ export default class Table extends React.Component {
         this.getData();
     }
 
+    componentDidMount() {
+        this.getData();
+    }
+
     getData() {
-        var xmlhttp = new XMLHttpRequest();
         var url = "https://fcctop100.herokuapp.com/api/fccusers/top/";
         if (this.state.focus === "thirty-days") {
             url += "recent";
         } else {
             url += "alltime";
         }
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                var data = JSON.parse(xmlhttp.responseText);
-            }
-        };
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
+        Axios
+            .get(url)
+            .then(result => {
+                this.setState({data: result.data});
+                console.log(this.state);
+            });
     }
-
 
     render() {
         return (
@@ -51,7 +57,7 @@ export default class Table extends React.Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
+                        <td>{this.state.data[0].username}</td>
                         <td>two</td>
                         <td>three</td>
                         <td>four</td>
