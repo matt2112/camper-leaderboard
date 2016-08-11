@@ -7,11 +7,7 @@ export default class Table extends React.Component {
         super();
         this.state = {
             focus: "thirty-days",
-            data: {
-                0: {
-                    username: "steve"
-                }
-            }
+            data: []
         };
     }
 
@@ -40,7 +36,6 @@ export default class Table extends React.Component {
             .get(url)
             .then(result => {
                 this.setState({data: result.data});
-                console.log(this.state);
             });
     }
 
@@ -56,12 +51,16 @@ export default class Table extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{this.state.data[0].username}</td>
-                        <td>two</td>
-                        <td>three</td>
-                        <td>four</td>
-                    </tr>
+                    {this.state.data.map(function(user, idx) {
+                        return (
+                            <tr key={idx}>
+                                <td>{idx + 1}</td>
+                                <td>{user.username}</td>
+                                <td>{user.recent}</td>
+                                <td>{user.alltime}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         );
