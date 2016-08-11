@@ -2,15 +2,41 @@ import React from "react";
 
 export default class Table extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            focus: "thirty-days",
+            data: {}
+        };
+    }
+
     changeToThirty() {
-        const focus = "thirty-days";
-        this.props.changeFocus(focus);
+        this.state.focus = "thirty-days";
+        this.getData();
     }
 
     changeToAll() {
-        const focus = "all-time";
-        this.props.changeFocus(focus);
+        this.state.focus = "all-time";
+        this.getData();
     }
+
+    getData() {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "https://fcctop100.herokuapp.com/api/fccusers/top/";
+        if (this.state.focus === "thirty-days") {
+            url += "recent";
+        } else {
+            url += "alltime";
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var data = JSON.parse(xmlhttp.responseText);
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+    }
+
 
     render() {
         return (
@@ -25,7 +51,7 @@ export default class Table extends React.Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>one</td>
+                        <td></td>
                         <td>two</td>
                         <td>three</td>
                         <td>four</td>
