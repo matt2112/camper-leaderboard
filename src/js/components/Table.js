@@ -11,13 +11,8 @@ export default class Table extends React.Component {
         };
     }
 
-    changeToThirty() {
-        this.state.focus = "thirty-days";
-        this.getData();
-    }
-
-    changeToAll() {
-        this.state.focus = "all-time";
+    changeFocus(focus) {
+        this.state.focus = focus;
         this.getData();
     }
 
@@ -46,8 +41,8 @@ export default class Table extends React.Component {
                     <tr>
                         <th>#</th>
                         <th>Camper Name</th>
-                        <th onClick={this.changeToThirty.bind(this)}>Points in past 30 days</th>
-                        <th onClick={this.changeToAll.bind(this)}>All time points</th>
+                        <th onClick={this.changeFocus.bind(this, "thirty-days")}>Points in past 30 days</th>
+                        <th onClick={this.changeFocus.bind(this, "all-time")}>All time points</th>
                     </tr>
                 </thead>
                 <tbody>
