@@ -1,3 +1,6 @@
+body {
+  margin: 20px; }
+
 #main {
   background-color: #ddd;
   text-align: center;
@@ -18,5 +21,26 @@
 th, td {
   border: 1px solid #333;
   border-collapse: collapse; }
+
+.sortButton {
+  display: inline-block;
+  width: 20px;
+  padding-bottom: 14.18px;
+  margin-left: 20px;
+  top: 4px;
+  position: relative;
+  overflow: hidden; }
+
+.sortButton:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0079C6;
+  transform-origin: 0 0;
+  transform: rotate(-45deg);
+  cursor: pointer; }
 
 /*# sourceMappingURL=styles.css.map */

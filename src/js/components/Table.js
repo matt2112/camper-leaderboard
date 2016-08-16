@@ -1,28 +1,23 @@
 import React from "react";
 import Axios from "axios";
+import classNames from "classnames";
 
 export default class Table extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            focus: "thirty-days",
             data: []
         };
     }
 
-    changeFocus(focus) {
-        this.state.focus = focus;
-        this.getData();
-    }
-
     componentDidMount() {
-        this.getData();
+        this.getData("thirty-days");
     }
 
-    getData() {
+    getData(focus) {
         var url = "https://fcctop100.herokuapp.com/api/fccusers/top/";
-        if (this.state.focus === "thirty-days") {
+        if (focus === "thirty-days") {
             url += "recent";
         } else {
             url += "alltime";
@@ -34,30 +29,45 @@ export default class Table extends React.Component {
             });
     }
 
+    // getClassNames() {
+    //     return classNames({
+    //         'blue':  this.state.clicked,
+    //         'green':  !this.state.clicked
+    //     });
+    // }
+
+    // <div className={this.getClassNames()} onClick={this.setState({clicked: !this.state.clicked})}>something</div>
+
     render() {
         return (
-            <table id="leaderboard">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Camper Name</th>
-                        <th onClick={this.changeFocus.bind(this, "thirty-days")}>Points in past 30 days</th>
-                        <th onClick={this.changeFocus.bind(this, "all-time")}>All time points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.state.data.map(function(user, idx) {
-                        return (
-                            <tr key={idx}>
-                                <td>{idx + 1}</td>
-                                <td>{user.username}</td>
-                                <td>{user.recent}</td>
-                                <td>{user.alltime}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+            <div>
+                <table id="leaderboard">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Camper Name</th>
+                            <th>Points in past 30 days
+                                <span className="sortButton" onClick={this.getData.bind(this, "thirty-days")}></span>
+                            </th>
+                            <th>All time points
+                                <span className="sortButton" onClick={this.getData.bind(this, "all-time")}></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.data.map(function(user, idx) {
+                            return (
+                                <tr key={idx}>
+                                    <td>{idx + 1}</td>
+                                    <td>{user.username}</td>
+                                    <td>{user.recent}</td>
+                                    <td>{user.alltime}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+                </div>
         );
     }
 }

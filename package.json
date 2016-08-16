@@ -14,12 +14,12 @@
     "babel-preset-stage-0": "^6.3.13",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
-    "react-http-request": "^1.0.2",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
-    "axios": "^0.13.1"
+    "axios": "^0.13.1",
+    "classnames": "^2.2.5"
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot",
