@@ -49,7 +49,7 @@ export default class Table extends React.Component {
                             return (
                                 <tr key={idx}>
                                     <td>{idx + 1}</td>
-                                    <td>{user.username}</td>
+                                    <td className="camper"><img className="thumbnail" src={user.img} /> <span className="username">{user.username}</span></td>
                                     <td>{user.recent}</td>
                                     <td>{user.alltime}</td>
                                 </tr>

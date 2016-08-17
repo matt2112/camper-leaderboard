@@ -55,3 +55,27 @@ th, td {
     transform: rotate(-45deg);
     cursor: pointer;
 }
+
+.camper {
+    width: 50%;
+    text-align: left;
+    padding: {
+        left: 10px;
+    }
+}
+
+.thumbnail {
+    padding: {
+        top: 6px;
+        right: 5px;
+        bottom: 3px;
+        right: 5px;
+    }
+    height: 40px;
+    border-radius: 10px;
+}
+
+.username {
+    position: relative;
+    bottom: 15px;
+}
