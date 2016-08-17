@@ -1,6 +1,5 @@
 import React from "react";
 import Axios from "axios";
-import classNames from "classnames";
 
 export default class Table extends React.Component {
 
@@ -28,15 +27,6 @@ export default class Table extends React.Component {
                 this.setState({data: result.data});
             });
     }
-
-    // getClassNames() {
-    //     return classNames({
-    //         'blue':  this.state.clicked,
-    //         'green':  !this.state.clicked
-    //     });
-    // }
-
-    // <div className={this.getClassNames()} onClick={this.setState({clicked: !this.state.clicked})}>something</div>
 
     render() {
         return (
