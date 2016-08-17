@@ -47,7 +47,7 @@ export default class Table extends React.Component {
                     <tbody>
                         {this.state.data.map(function(user, idx) {
                             return (
-                                <tr key={idx}>
+                                <tr key={idx} className={"row" + (idx + 1)} >
                                     <td>{idx + 1}</td>
                                     <td className="camper"><img className="thumbnail" src={user.img} /> <span className="username">{user.username}</span></td>
                                     <td>{user.recent}</td>
