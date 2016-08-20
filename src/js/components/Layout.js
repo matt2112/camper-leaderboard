@@ -34,12 +34,15 @@ class Table extends Component {
 
     render() {
         return (
-            <div className="main">
-                <h1 className="title">freeCodeCamp Leaderboard</h1>
-                <table className="leaderboard">
-                    <TableHead getData={this.getData.bind(this)} />
-                    <TableBody data={this.state.data} />
-                </table>
+            <div className="wrapper">
+                <div className="main">
+                    <h1 className="title">freeCodeCamp Leaderboard</h1>
+                    <table className="leaderboard">
+                        <TableHead getData={this.getData.bind(this) } />
+                        <TableBody data={this.state.data} />
+                    </table>
+                </div>
+                <footer className="footer">Coded by <a href="https://github.com/matt2112" target="_blank">Matt Lewis</a></footer>
             </div>
         );
     }
