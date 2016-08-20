@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
+import TableBody from './TableBody';
 import TableHead from './TableHead';
 
 class Table extends Component {
@@ -12,7 +13,7 @@ class Table extends Component {
             data: []
         };
 
-        this.getData("all-time");
+        this.getData("thirty-days");
     }
 
     getData(focus) {
@@ -21,21 +22,23 @@ class Table extends Component {
             url += "recent";
         } else if (focus === "all-time") {
             url += "alltime";
+        } else {
+            return console.error("Error, focus option not available");
         }
         Axios
             .get(url)
             .then(result => {
-                this.setState({ data: result });
+                this.setState({ data: result.data });
             });
     }
 
     render() {
         return (
-            <div id="main">
-                <h1 id="title">freeCodeCamp Leaderboard</h1>
-                <table id="leaderboard">
-                    <TableHead getData={this.getData.bind(this) } />
-
+            <div className="main">
+                <h1 className="title">freeCodeCamp Leaderboard</h1>
+                <table className="leaderboard">
+                    <TableHead getData={this.getData.bind(this)} />
+                    <TableBody data={this.state.data} />
                 </table>
             </div>
         );
@@ -43,29 +46,3 @@ class Table extends Component {
 }
 
 export default Table;
-
-// <thead>
-//     <tr>
-//         <th>#</th>
-//         <th>Camper Name</th>
-//         <th>Points in past 30 days
-//             <span className="sortButton" onClick={this.getData.bind(this, "thirty-days") }></span>
-//         </th>
-//         <th>All time points
-//             <span className="sortButton" onClick={this.getData.bind(this, "all-time") }></span>
-//         </th>
-//     </tr>
-// </thead>
-
-// <tbody>
-//     {this.state.data.map(function (user, idx) {
-//         return (
-//             <tr key={idx} className={"row" + (idx + 1) } >
-//                 <td>{idx + 1}</td>
-//                 <td className="camper"><img className="thumbnail" src={user.img} /> <span className="username">{user.username}</span></td>
-//                 <td>{user.recent}</td>
-//                 <td>{user.alltime}</td>
-//             </tr>
-//         );
-//     }) }
-// </tbody>
