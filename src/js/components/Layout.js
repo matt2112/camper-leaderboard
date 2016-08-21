@@ -4,7 +4,7 @@ import Axios from 'axios';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 
-class Table extends Component {
+class Layout extends Component {
 
     constructor() {
         super();
@@ -48,4 +48,4 @@ class Table extends Component {
     }
 }
 
-export default Table;
+export default Layout;
